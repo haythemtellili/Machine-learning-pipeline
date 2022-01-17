@@ -1,0 +1,26 @@
+name: ml_pipeline
+on: [push]
+jobs:
+  run:
+    runs-on: [ubuntu-latest]
+    container: docker://dvcorg/cml-py3:latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: 'Train my model'
+        env:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Your ML workflow goes here
+          pip install -r requirements.txt
+          python train.py
+          
+          echo "## Model Metrics" > report.md
+          cat metrics.txt >> report.md
+          
+          cml-send-comment report.md
+      - name: Lint code
+        run: |
+          flake8 --ignore=E501,E231,E121,W503 *.py
+      - name: Run unit tests
+        run: |
+          python -m unittest --verbose --failfast
