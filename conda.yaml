@@ -1,0 +1,15 @@
+name: ml-pipeline
+channels:
+  - defaults
+dependencies:
+  - python=3.7
+  - numpy=1.21.2
+  - pandas=1.3.5
+  - cloudpickle=2.0.0
+  - pip:
+    - mlflow==1.22.0
+    - pydotplus==2.0.2
+    - graphviz==0.19.1
+    - scikit-learn==1.0.2
+    - seaborn==0.11.2
+    - matplotlib==3.5.1
