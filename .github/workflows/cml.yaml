@@ -18,3 +18,9 @@ jobs:
           cat metrics.txt >> report.md
           
           cml-send-comment report.md
+      - name: Lint code
+        run: |
+          flake8 --ignore=E501,E231,E121,W503 *.py
+      - name: Run unit tests
+        run: |
+          python -m unittest --verbose --failfast
