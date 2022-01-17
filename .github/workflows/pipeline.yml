@@ -6,6 +6,7 @@ env:
 jobs:
   lint:
     runs-on: ubuntu-18.04
+    container: docker://dvcorg/cml-py3:latest
     steps:
     - uses: actions/checkout@v1
     - name: Setup Python environment
@@ -18,3 +19,15 @@ jobs:
     - name: Run unit tests
       run: |
         python -m unittest --verbose --failfast
+        
+    - name: 'Train my model'
+      env:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        # Your ML workflow goes here
+        python train.py
+
+        echo "## Model Metrics" > report.md
+        cat metrics.txt >> report.md
+
+        cml-send-comment report.md
