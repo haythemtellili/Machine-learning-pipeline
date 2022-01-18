@@ -24,10 +24,11 @@ Prerequisites:
 ## Model training with MLflow:
 
  1. clone this repo: `git clone https://github.com/haythemtellili/ML_pipeline.git`
- 2. build the image for the project's Docker container environment: `docker build -t mlflow_example -f Dockerfile .`
- 3. create conda environment: `conda env create --name ml-pipeline --file=conda.yaml`
- 4. activate conda environment: `conda activate ml-pipeline`
- 5. Run the workflow: `mlflow run .`
+ 2. Enter to ML_pipeline: `cd ML_pipeline`
+ 3. build the image for the project's Docker container environment: `docker build -t mlflow_example -f Dockerfile .`
+ 4. create conda environment: `conda env create --name ml-pipeline --file=conda.yaml`
+ 5. activate conda environment: `conda activate ml-pipeline`
+ 6. Run the workflow: `mlflow run .`
 
 ## Run MLflow tracking UI:
 In the same repo directory, run `mlflow ui --host 0.0.0.0 --port 5000`
